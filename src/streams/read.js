@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'url';
 import fs from 'node:fs';
 import path from 'path';
+import { stdout } from 'node:process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +16,7 @@ const read = () => {
 
     const fileStream = fs.createReadStream(fileToRead, { encoding: 'utf8' });
 
-    fileStream.pipe(process.stdout);
+    fileStream.pipe(stdout);
 
     fileStream.on('error', (error) => {
       console.error('Error reading file:', error);
